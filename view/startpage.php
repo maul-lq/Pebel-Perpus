@@ -71,7 +71,6 @@ require __DIR__ . '/components/head.php';
 </head>
 
 <body>
-
 	<div class="flex h-screen overflow-hidden">
 
 		<div class="w-full lg:w-2/5 bg-white relative">
@@ -122,7 +121,6 @@ require __DIR__ . '/components/head.php';
 	</div>
 
 	<script src="<?= $asset('assets/js/startpage.js') ?>" defer></script>
-	<script src="<?= $asset("assets/js/skrip_sebelum_dashboard.js"); ?>" defer></script>
 </body>
 
 </html>

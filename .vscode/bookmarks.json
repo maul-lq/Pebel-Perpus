@@ -1,0 +1,44 @@
+{
+	"files": [
+		{
+			"path": "index.php",
+			"bookmarks": [
+				{
+					"line": 130,
+					"column": 5,
+					"label": "StartPage: 01"
+				},
+				{
+					"line": 187,
+					"column": 37,
+					"label": "StartPage: 02"
+				},
+				{
+					"line": 206,
+					"column": 0,
+					"label": "StartPage: 03"
+				}
+			]
+		},
+		{
+			"path": "view/startpage.php",
+			"bookmarks": [
+				{
+					"line": 69,
+					"column": 48,
+					"label": "StartPage: 04"
+				}
+			]
+		},
+		{
+			"path": "assets/js/startpage.js",
+			"bookmarks": [
+				{
+					"line": 50,
+					"column": 0,
+					"label": "StartPage: 05 (defer)"
+				}
+			]
+		}
+	]
+}
