@@ -327,7 +327,7 @@ function loadMemberData(tab, page = 1) {
  * - data-member-type: 'user' or 'admin'
  * 
  * PHOTO HANDLING:
- * - If foto_profil exists: <img> dengan onerror fallback to SVG
+ * - If foto_profil exists: <img loading="lazy"> dengan onerror fallback to SVG
  * - If null: Show default user icon SVG
  * - Path normalization: handles 'assets/' prefix dan ASSET_BASE_PATH
  * 
@@ -371,7 +371,7 @@ function renderMemberList(tab, data) {
             </svg>`;
         
         const fotoHtml = item.foto_profil 
-            ? `<img src="${fotoPath}" alt="Foto Profil" class="w-10 h-10 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+            ? `<img loading="lazy" src="${fotoPath}" alt="Foto Profil" class="w-10 h-10 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                ${svgFallback}`
             : svgFallback;
         
@@ -913,7 +913,7 @@ function renderModalContent(mode) {
             <div class="relative group mb-6 mx-auto">
                 <div class="w-32 h-32 rounded-full border-4 border-[#1D74BD] flex items-center justify-center overflow-hidden ${fotoProfilUrl ? 'bg-white' : 'bg-white text-[#1D74BD]'}">
                     ${fotoProfilUrl ? 
-                        `<img src="${fotoProfilUrl}" alt="Foto Profil" class="w-full h-full object-cover">` : 
+                        `<img loading="lazy" src="${fotoProfilUrl}" alt="Foto Profil" class="w-full h-full object-cover">` : 
                         SVG_ICONS.user
                     }
                 </div>
@@ -978,7 +978,7 @@ function renderModalContent(mode) {
                     <div class="mb-6 flex justify-center">
                     <div class="w-32 h-32 rounded-full border-4 border-[#1D74BD] flex items-center justify-center overflow-hidden ${fotoProfilUrl ? 'bg-white' : 'bg-white text-[#1D74BD]'}">
                         ${fotoProfilUrl ? 
-                            `<img src="${fotoProfilUrl}" alt="Foto Profil" class="w-full h-full object-cover">` : 
+                            `<img loading="lazy" src="${fotoProfilUrl}" alt="Foto Profil" class="w-full h-full object-cover">` : 
                             SVG_ICONS.user
                         }
                     </div>
@@ -1243,7 +1243,7 @@ function openUploadFotoModal(nomorInduk) {
             <!-- Preview Container -->
             <div class="mb-6 flex justify-center">
                 <div class="w-40 h-40 rounded-full border-4 border-[#1D74BD] overflow-hidden bg-gray-100 flex items-center justify-center">
-                    <img id="foto-preview" src="" alt="Preview" class="w-full h-full object-cover hidden">
+                    <img loading="lazy" id="foto-preview" src="" alt="Preview" class="w-full h-full object-cover hidden">
                     <svg id="foto-placeholder" xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />

@@ -63,7 +63,7 @@
  * IMAGE PREVIEW PATTERN:
  * 1. User selects file
  * 2. FileReader reads file as Data URL
- * 3. Create/update <img> element with preview
+ * 3. Create/update <img loading="lazy"> element with preview
  * 4. Remove placeholder icon if exists
  * 5. On submit → upload actual file to server
  * 

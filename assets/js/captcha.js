@@ -16,7 +16,7 @@
  * - Event delegation: Multiple triggers (image click + button click)
  * 
  * TARGET ELEMENTS:
- * - #captchaImage: CAPTCHA image element (<img>)
+ * - #captchaImage: CAPTCHA image element (<img loading="lazy">)
  * - #refresh-captcha: Refresh button (optional)
  * 
  * CACHE-BUSTING STRATEGY:

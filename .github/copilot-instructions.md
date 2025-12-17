@@ -241,7 +241,7 @@ The helper handles both XAMPP root deploys and subfolder deploys automatically.
 **Server:** `view/components/captcha.php` generates GD image, stores code in `$_SESSION['code']`  
 **View template:**
 ```php
-<img src="<?= $asset('view/components/captcha.php') ?>" id="captchaImage">
+<img loading="lazy" src="<?= $asset('view/components/captcha.php') ?>" id="captchaImage">
 <input type="text" name="captcha" required>
 ```
 **Client:** `assets/js/captcha.js` refreshes image on click/button with cache-busting `?r=timestamp`  
@@ -1629,7 +1629,7 @@ async function submitFormAjax(formData) {
 **Route with action:** `/index.php?page=booking&action=buat_booking`  
 **Admin route:** `/index.php?page=admin&action=member_list`  
 **Super Admin only:** `/index.php?page=admin&action=booking_external`  
-**Asset reference:** `<img src="<?= $asset('/assets/image/logo.png') ?>">`  
+**Asset reference:** `<img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>">`  
 **Role check in view:** `<?php if ($_SESSION['user']['role'] === 'Super Admin'): ?>`  
 **DB query with prepared statement:** `$stmt = $pdo->prepare("SELECT * FROM ruangan WHERE status_ruangan = ?"); $stmt->execute(['Tersedia']); $rooms = $stmt->fetchAll();`  
 **AJAX request:** `fetch('?page=booking&action=get_user_by_nim&nim=123').then(r => r.json()).then(data => console.log(data.success ? data.data : data.message));`  

@@ -249,7 +249,7 @@ $currentTab = $_GET['tab'] ?? 'upcoming';
             <!-- STATE 1: CARD TOMBOL BUAT BOOKING -->
             <div id="booking-card" class="block">
                 <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden relative group cursor-pointer">
-                    <img src="<?= $asset('/assets/image/room.png') ?>" alt="Library" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition">
+                    <img loading="lazy" src="<?= $asset('/assets/image/room.png') ?>" alt="Library" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition">
 
                     <!-- Overlay Button look -->
                     <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition">
@@ -270,7 +270,7 @@ $currentTab = $_GET['tab'] ?? 'upcoming';
 
                 <!-- Form Image Header -->
                 <div class="mb-4 rounded-lg overflow-hidden h-24">
-                    <img src="<?= $asset('/assets/image/room.png') ?>" class="w-full h-full object-cover" alt="Room Preview">
+                    <img loading="lazy" src="<?= $asset('/assets/image/room.png') ?>" class="w-full h-full object-cover" alt="Room Preview">
                 </div>
 
                 <form method="POST" action="index.php?page=admin&action=submit_booking_external" enctype="multipart/form-data">

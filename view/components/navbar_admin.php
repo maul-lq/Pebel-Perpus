@@ -82,7 +82,7 @@
  * 
  * PROFILE PHOTO HANDLING:
  * - Check: isset($_SESSION['user']['foto_profil']) && !empty(...)
- * - If exists: <img src="<?= $asset(...) ?>" />
+ * - If exists: <img loading="lazy" src="<?= $asset(...) ?>" />
  * - If NOT exists: Placeholder user icon (SVG)
  * - Rounded circle: rounded-full
  * - Overflow hidden: overflow-hidden (crops image to circle)
@@ -137,7 +137,7 @@
     <nav class="bg-white py-4 px-6 flex flex-col lg:flex-row justify-between items-center shadow-sm sticky top-0 z-50">
         <!-- Logo Section -->
         <a href="?page=admin" class="flex items-center gap-2 mb-4 lg:mb-0">
-            <img src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto object-contain logo-scale">
+            <img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto object-contain logo-scale">
         </a>
 
         <!-- Navigation Links -->
@@ -190,7 +190,7 @@
             <span class="text-xl font-bold text-gray-800"><?= isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest' ?></span>
             <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden">
                 <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                    <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                    <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                          alt="Foto Profil" 
                          class="w-full h-full object-cover">
                 <?php else: ?>

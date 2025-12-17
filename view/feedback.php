@@ -157,14 +157,14 @@ require __DIR__ . '/components/head.php';
     <!-- NAVBAR -->
     <nav class="bg-white px-6 py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
         <a href="?page=dashboard" class="flex items-center">
-            <img src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
+            <img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
         </a>
         
         <a href="?page=profile" class="flex items-center gap-3">
             <span class="text-xl font-bold text-gray-800"><?= isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest' ?></span>
             <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden">
                 <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                    <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                    <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                          alt="Foto Profil" 
                          class="w-full h-full object-cover">
                 <?php else: ?>

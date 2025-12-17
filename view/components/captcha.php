@@ -8,7 +8,7 @@
  * Serves sebagai both view component AND dynamic endpoint.
  * 
  * DUAL PURPOSE:
- * 1. DYNAMIC ENDPOINT: Accessed via <img src="captcha.php">
+ * 1. DYNAMIC ENDPOINT: Accessed via <img loading="lazy" src="captcha.php">
  * 2. SESSION STORAGE: Stores code in $_SESSION['code'] untuk server-side validation
  * 
  * FEATURES:
@@ -62,7 +62,7 @@
  * 
  * USAGE IN VIEWS:
  * ```php
- * <img src="<?= $asset('view/components/captcha.php') ?>" 
+ * <img loading="lazy" src="<?= $asset('view/components/captcha.php') ?>" 
  *      id="captchaImage" 
  *      alt="CAPTCHA" 
  *      class="w-[173px] h-[50px]" />
@@ -99,7 +99,7 @@
  * - No reuse: New code generated on each image request
  * 
  * BROWSER BEHAVIOR:
- * - <img> tag sends GET request to captcha.php
+ * - <img loading="lazy"> tag sends GET request to captcha.php
  * - PHP executes, generates image, outputs JPEG stream
  * - Browser renders image inline
  * - Refresh button/click triggers new GET request

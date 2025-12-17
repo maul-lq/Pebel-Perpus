@@ -29,7 +29,7 @@
  * 4. IMAGE PREVIEW
  *    - previewImage(event, targetId): Preview selected image before upload
  *    - Uses FileReader API untuk read file as Data URL
- *    - Updates preview container dengan <img> element
+ *    - Updates preview container dengan <img loading="lazy"> element
  *    - Works untuk both Add dan Edit modals
  * 
  * 5. FORM VALIDATION
