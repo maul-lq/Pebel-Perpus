@@ -30,7 +30,7 @@ require __DIR__ . '/components/head.php';
     <nav class="bg-white px-6 py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
         <a href="?page=dashboard" class="flex items-center">
             <!-- Logo -->
-            <img src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
+            <img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
         </a>
         
         <div class="hidden md:block">
@@ -41,7 +41,7 @@ require __DIR__ . '/components/head.php';
             <span class="text-xl font-bold text-gray-800"><?= isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest' ?></span>
             <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden">
                 <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                    <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                    <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                          alt="Foto Profil" 
                          class="w-full h-full object-cover">
                 <?php else: ?>
@@ -63,7 +63,7 @@ require __DIR__ . '/components/head.php';
     <nav class="bg-white px-6 py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
         <a href="?page=dashboard" class="flex items-center">
             <!-- Logo -->
-            <img src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
+            <img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
         </a>
         
         <div class="hidden md:block">
@@ -74,7 +74,7 @@ require __DIR__ . '/components/head.php';
             <span class="text-xl font-bold text-gray-800"><?= isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest' ?></span>
             <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden">
                 <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                    <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                    <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                          alt="Foto Profil" 
                          class="w-full h-full object-cover">
                 <?php else: ?>
@@ -102,7 +102,7 @@ require __DIR__ . '/components/head.php';
                             <?php 
                             $fotoBookingAktif = !empty($active_booking['foto_ruangan']) ? $asset($active_booking['foto_ruangan']) : $asset('/assets/image/gambar ruangan.jpg');
                             ?>
-                            <img src="<?= $fotoBookingAktif ?>" alt="<?= htmlspecialchars($active_booking['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
+                            <img loading="lazy" src="<?= $fotoBookingAktif ?>" alt="<?= htmlspecialchars($active_booking['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
                             <!-- Badge Role di pojok kiri atas gambar -->
                             <?php 
                             $is_ketua = isset($active_booking['is_ketua']) && $active_booking['is_ketua'] == 1;
@@ -207,7 +207,7 @@ require __DIR__ . '/components/head.php';
                     <div id="confirmation-overlay" class="hidden mt-0 -translate-y-48">
                         <div class="bg-white rounded-xl shadow-md overflow-hidden flex h-48 transition hover:shadow-lg">
                             <div class="w-5/12 relative">
-                                <img src="<?= $fotoBookingAktif ?>" alt="<?= htmlspecialchars($active_booking['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
+                                <img loading="lazy" src="<?= $fotoBookingAktif ?>" alt="<?= htmlspecialchars($active_booking['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
                             </div>
                             <div class="w-7/12 p-4 flex flex-col justify-center items-center">
                                 <p class="text-lg font-semibold text-gray-800 mb-4">Selesaikan Sesi?</p>
@@ -239,7 +239,7 @@ require __DIR__ . '/components/head.php';
                         <?php 
                         $fotoRuangan = !empty($ruangan['foto_ruangan']) ? $asset($ruangan['foto_ruangan']) : $asset('/assets/image/gambar ruangan.jpg');
                         ?>
-                        <img src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($ruangan['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
+                        <img loading="lazy" src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($ruangan['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
                     </div>
                     <div class="w-7/12 p-4 flex flex-col justify-between">
                         <div>

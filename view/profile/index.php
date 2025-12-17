@@ -20,13 +20,13 @@ require __DIR__ . '/../components/head.php';
     <nav class="bg-white px-6 py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
         <a href="?page=dashboard" class="flex items-center">
             <!-- Logo -->
-            <img src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
+            <img loading="lazy" src="<?= $asset('/assets/image/logo.png') ?>" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain logo-scale">
         </a>
         <a href="?page=profile" class="flex items-center gap-3">
             <span class="text-xl font-bold text-gray-800"><?= isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']['username']) : 'Guest' ?></span>
             <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden">
                 <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                    <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                    <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                          alt="Foto Profil" 
                          class="w-full h-full object-cover">
                 <?php else: ?>
@@ -47,7 +47,7 @@ require __DIR__ . '/../components/head.php';
                 <!-- Avatar Besar -->
                 <div class="h-32 w-32 rounded-full bg-gray-200 mx-auto mb-6 flex items-center justify-center relative group cursor-pointer overflow-hidden" id="avatarContainer">
                     <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                        <img src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                        <img loading="lazy" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                              alt="Foto Profil" 
                              class="w-full h-full object-cover">
                     <?php else: ?>
@@ -124,7 +124,7 @@ require __DIR__ . '/../components/head.php';
                         <?php if ($_SESSION['user']['role'] === 'Super Admin'): ?>
                         <a href="?page=admin&action=booking_external" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-4 h-84 lg:h-95">
                             <div class="absolute inset-0 bg-gray-200">
-                                <img src="<?= $asset('/assets/image/thumb_handshake.png') ?>"
+                                <img loading="lazy" src="<?= $asset('/assets/image/thumb_handshake.png') ?>"
                                     alt="Booking Eksternal"
                                     class="card-zoom-image w-full h-full object-cover">
                             </div>
@@ -140,7 +140,7 @@ require __DIR__ . '/../components/head.php';
                         <!-- ROW 1: Kelola Ruangan -->
                         <a href="?page=admin&action=kelola_ruangan" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-3 h-84 lg:h-95">
                             <div class="absolute inset-0 bg-gray-200">
-                                <img src="<?= $asset('/assets/image/room.png') ?>"
+                                <img loading="lazy" src="<?= $asset('/assets/image/room.png') ?>"
                                     alt="Kelola Ruangan"
                                     class="card-zoom-image w-full h-full object-cover">
                             </div>
@@ -154,7 +154,7 @@ require __DIR__ . '/../components/head.php';
                         <!-- ROW 2: Laporan Peminjaman -->
                         <a href="?page=admin&action=laporan" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-2 lg:col-span-3 h-56 lg:h-64" : "col-span-3 lg:col-span-4 h-86 lg:h-94" ?>">
                             <div class="absolute inset-0 bg-gray-200">
-                                <img src="<?= $asset('/assets/image/thumb_laporan.png') ?>"
+                                <img loading="lazy" src="<?= $asset('/assets/image/thumb_laporan.png') ?>"
                                     alt="Laporan Peminjaman"
                                     class="card-zoom-image w-full h-full object-cover">
                             </div>
@@ -168,7 +168,7 @@ require __DIR__ . '/../components/head.php';
                         <!-- ROW 2: Booking-List -->
                         <a href="?page=admin&action=booking_list" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-2 h-56 lg:h-64 <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-1 lg:col-span-2 h-56 lg:h-64" : "col-span-3 lg:col-span-4 h-86 lg:h-94" ?>">
                             <div class="absolute inset-0 bg-gray-200">
-                                <img src="<?= $asset('/assets/image/thumb_booking.png') ?>"
+                                <img loading="lazy" src="<?= $asset('/assets/image/thumb_booking.png') ?>"
                                     alt="Booking List"
                                     class="card-zoom-image w-full h-full object-cover">
                             </div>
@@ -182,7 +182,7 @@ require __DIR__ . '/../components/head.php';
                         <!-- ROW 2: Member-List -->
                         <a href="?page=admin&action=member_list" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-1 lg:col-span-2 h-56 lg:h-64" : "col-span-2 lg:col-span-3 h-86 lg:h-94" ?>">
                             <div class="absolute inset-0 bg-gray-200">
-                                <img src="<?= $asset('/assets/image/thumb_member.png') ?>"
+                                <img loading="lazy" src="<?= $asset('/assets/image/thumb_member.png') ?>"
                                     alt="Member List"
                                     class="card-zoom-image w-full h-full object-cover">
                             </div>
@@ -353,7 +353,7 @@ require __DIR__ . '/../components/head.php';
                         <?php foreach ($history_bookings as $booking): ?>
                         <!-- History Card -->
                         <div class="rounded-xl p-3 flex gap-3 shadow-sm border border-gray-200 hover:shadow-md transition">
-                            <img src="<?= $asset("/assets/image/gambar ruangan.jpg") ?>" class="w-24 h-24 object-cover rounded-lg" alt="<?= htmlspecialchars($booking['nama_ruangan']) ?>">
+                            <img loading="lazy" src="<?= $asset("/assets/image/gambar ruangan.jpg") ?>" class="w-24 h-24 object-cover rounded-lg" alt="<?= htmlspecialchars($booking['nama_ruangan']) ?>">
                             <div class="flex-1">
                                 <h3 class="font-bold text-gray-800 text-sm"><?= htmlspecialchars($booking['nama_ruangan']) ?></h3>
                                 <div class="text-xs text-gray-500 mt-1 space-y-1">
@@ -541,7 +541,7 @@ require __DIR__ . '/../components/head.php';
                 <div class="mb-6">
                     <div id="previewContainer" class="w-48 h-48 rounded-full bg-gray-100 mx-auto flex items-center justify-center overflow-hidden border-4 border-gray-200">
                         <?php if (isset($_SESSION['user']['foto_profil']) && !empty($_SESSION['user']['foto_profil'])): ?>
-                            <img id="previewImage" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
+                            <img loading="lazy" id="previewImage" src="<?= htmlspecialchars($asset($_SESSION['user']['foto_profil']), ENT_QUOTES) ?>" 
                                  alt="Preview" 
                                  class="w-full h-full object-cover">
                         <?php else: ?>

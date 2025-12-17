@@ -119,7 +119,7 @@ function showNavbarWithoutTitle(assetPath = '') {
     const navbarHTML = `
         <nav class="bg-white px-6 py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
             <a href="?page=dashboard" class="flex items-center">
-                <img src="${assetPath}assets/image/logo.png" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain" style="transform: scale(6); transform-origin: left center;">
+                <img loading="lazy" src="${assetPath}assets/image/logo.png" alt="BookEZ Logo" class="h-8 w-auto mr-2 inline-block object-contain" style="transform: scale(6); transform-origin: left center;">
             </a>
             
             <a href="?page=profile" class="flex items-center gap-3">

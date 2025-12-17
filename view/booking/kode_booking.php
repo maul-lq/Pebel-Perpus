@@ -28,7 +28,7 @@ require __DIR__ . '/../components/head.php';
             <h3 class="text-xl font-bold text-gray-800 mb-4"><?= htmlspecialchars($booking['nama_ruangan']) ?></h3>
 
             <div class="p-2 border-2 border-black mb-6">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=<?= urlencode($booking['kode_booking'] . '-BookEZ') ?>" 
+                <img loading="lazy" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=<?= urlencode($booking['kode_booking'] . '-BookEZ') ?>" 
                      alt="QR Code" 
                      class="w-40 h-40 object-contain">
             </div>

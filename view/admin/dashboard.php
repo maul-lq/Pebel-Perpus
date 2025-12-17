@@ -37,7 +37,7 @@ require __DIR__ . '/../components/head.php';
                  <?php if ($_SESSION['user']['role'] === 'Super Admin'): ?>
                 <a href="?page=admin&action=booking_external" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-4 h-84 lg:h-95">
                     <div class="absolute inset-0 bg-gray-200">
-                        <img src="<?= $asset('/assets/image/thumb_handshake.png') ?>"
+                        <img loading="lazy" src="<?= $asset('/assets/image/thumb_handshake.png') ?>"
                             alt="Booking Eksternal"
                             class="card-zoom-image w-full h-full object-cover">
                     </div>
@@ -53,7 +53,7 @@ require __DIR__ . '/../components/head.php';
                 <!-- ROW 1: Kelola Ruangan -->
                 <a href="?page=admin&action=kelola_ruangan" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-3 h-84 lg:h-95">
                     <div class="absolute inset-0 bg-gray-200">
-                        <img src="<?= $asset('/assets/image/room.png') ?>"
+                        <img loading="lazy" src="<?= $asset('/assets/image/room.png') ?>"
                             alt="Kelola Ruangan"
                             class="card-zoom-image w-full h-full object-cover">
                     </div>
@@ -67,7 +67,7 @@ require __DIR__ . '/../components/head.php';
                 <!-- ROW 2: Laporan Peminjaman -->
                 <a href="?page=admin&action=laporan" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-2 lg:col-span-3 h-56 lg:h-64" : "col-span-3 lg:col-span-4 h-86 lg:h-94" ?>">
                     <div class="absolute inset-0 bg-gray-200">
-                        <img src="<?= $asset('/assets/image/thumb_laporan.png') ?>"
+                        <img loading="lazy" src="<?= $asset('/assets/image/thumb_laporan.png') ?>"
                             alt="Laporan Peminjaman"
                             class="card-zoom-image w-full h-full object-cover">
                     </div>
@@ -81,7 +81,7 @@ require __DIR__ . '/../components/head.php';
                 <!-- ROW 2: Booking-List -->
                 <a href="?page=admin&action=booking_list" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer col-span-1 lg:col-span-2 h-56 lg:h-64 <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-1 lg:col-span-2 h-56 lg:h-64" : "col-span-3 lg:col-span-4 h-86 lg:h-94" ?>">
                     <div class="absolute inset-0 bg-gray-200">
-                        <img src="<?= $asset('/assets/image/thumb_booking.png') ?>"
+                        <img loading="lazy" src="<?= $asset('/assets/image/thumb_booking.png') ?>"
                             alt="Booking List"
                             class="card-zoom-image w-full h-full object-cover">
                     </div>
@@ -95,7 +95,7 @@ require __DIR__ . '/../components/head.php';
                 <!-- ROW 2: Member-List -->
                 <a href="?page=admin&action=member_list" class="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-md cursor-pointer <?= ($_SESSION['user']['role'] === 'Super Admin') ? "col-span-1 lg:col-span-2 h-56 lg:h-64" : "col-span-2 lg:col-span-3 h-86 lg:h-94" ?>">
                     <div class="absolute inset-0 bg-gray-200">
-                        <img src="<?= $asset('/assets/image/thumb_member.png') ?>"
+                        <img loading="lazy" src="<?= $asset('/assets/image/thumb_member.png') ?>"
                             alt="Member List"
                             class="card-zoom-image w-full h-full object-cover">
                     </div>

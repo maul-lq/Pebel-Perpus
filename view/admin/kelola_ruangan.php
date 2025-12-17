@@ -35,7 +35,7 @@ $defaultImage = $asset('/assets/image/room.png');
             ?>
                 <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col md:flex-row min-h-[280px] transition hover:shadow-md">
                     <div class="w-full md:w-5/12 relative h-48 md:h-auto">
-                        <img src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($room['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
+                        <img loading="lazy" src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($room['nama_ruangan']) ?>" class="absolute inset-0 w-full h-full object-cover">
                     </div>
 
                     <div class="w-full md:w-7/12 p-4 flex flex-col justify-between">
@@ -79,7 +79,7 @@ $defaultImage = $asset('/assets/image/room.png');
         <!-- Tombol Tambah Ruangan -->
         <div class="mt-10 flex justify-center">
             <button onclick="openAddModal()" class="relative group w-full max-w-lg h-40 rounded-xl overflow-hidden shadow-lg border-2 border-sky-500 cursor-pointer block">
-                <img src="<?= $defaultImage ?>"
+                <img loading="lazy" src="<?= $defaultImage ?>"
                     alt="Tambah Ruangan"
                     class="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:scale-105">
 
@@ -188,7 +188,7 @@ $defaultImage = $asset('/assets/image/room.png');
                             class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent">
                         <p class="text-xs text-slate-500 mt-1">Format: JPEG, PNG, WEBP (Max 5MB)</p>
                         <div id="addPreview" class="mt-3 hidden">
-                            <img src="" alt="Preview" class="w-full h-48 object-cover rounded-lg">
+                            <img loading="lazy" src="" alt="Preview" class="w-full h-48 object-cover rounded-lg">
                         </div>
                     </div>
                 </div>
@@ -292,7 +292,7 @@ $defaultImage = $asset('/assets/image/room.png');
                     <!-- Foto Ruangan Current -->
                     <div id="edit_current_photo_container" class="hidden">
                         <label class="block text-sm font-medium text-slate-700 mb-2">Foto Saat Ini</label>
-                        <img id="edit_current_photo" src="" alt="Foto Ruangan" class="w-full h-48 object-cover rounded-lg mb-2">
+                        <img loading="lazy" id="edit_current_photo" src="" alt="Foto Ruangan" class="w-full h-48 object-cover rounded-lg mb-2">
                     </div>
 
                     <!-- Foto Ruangan -->
@@ -303,7 +303,7 @@ $defaultImage = $asset('/assets/image/room.png');
                             class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent">
                         <p class="text-xs text-slate-500 mt-1">Format: JPEG, PNG, WEBP (Max 5MB). Kosongkan jika tidak ingin mengganti foto.</p>
                         <div id="editPreview" class="mt-3 hidden">
-                            <img src="" alt="Preview" class="w-full h-48 object-cover rounded-lg">
+                            <img loading="lazy" src="" alt="Preview" class="w-full h-48 object-cover rounded-lg">
                         </div>
                     </div>
                 </div>

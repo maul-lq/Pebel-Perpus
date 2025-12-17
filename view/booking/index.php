@@ -26,7 +26,7 @@ require __DIR__ . '/../components/head.php';
 	<header class="bg-white shadow-sm sticky top-0 z-50">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between overflow-clip">
 			<a href="?page=dashboard" class="flex items-center gap-2">
-				<img src="<?= $asset("/assets/image/logo.png") ?>" alt="" srcset="" width="200">
+				<img loading="lazy" src="<?= $asset("/assets/image/logo.png") ?>" alt="" srcset="" width="200">
 			</a>
 
 			<a href="?page=profile" class="flex items-center gap-3">
@@ -54,7 +54,7 @@ require __DIR__ . '/../components/head.php';
 							<?php 
 							$fotoRuangan = !empty($ruangan['foto_ruangan']) ? $asset($ruangan['foto_ruangan']) : $asset('/assets/image/gambar ruangan.jpg');
 							?>
-							<img src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($ruangan['nama_ruangan']) ?>" class="w-full h-full object-cover">
+							<img loading="lazy" src="<?= $fotoRuangan ?>" alt="<?= htmlspecialchars($ruangan['nama_ruangan']) ?>" class="w-full h-full object-cover">
 						</div>
 
 						<div class="flex flex-col pt-2 w-full">
