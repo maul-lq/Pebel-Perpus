@@ -40,11 +40,7 @@
  *    - Block if 24-hour temporary block (1-2 HANGUS in 30 days)
  *    - Block if 7-day suspension (3 HANGUS in 30 days)
  * 
- * 4. ACTIVE BOOKING CHECK:
- *    - hasActiveBooking() - User can only have ONE active booking at a time
- *    - Prevents resource hogging
- * 
- * 5. ROOM VALIDATION:
+ * 4. ROOM VALIDATION:
  *    - Room must exist and be 'Tersedia'
  *    - Jenis ruangan 'Ruang Umum' untuk user
  * 
@@ -119,7 +115,7 @@
  *    - Validates user exists and returns basic info (no password)
  * 
  * BUSINESS RULES:
- * - ONE ACTIVE BOOKING PER USER: Prevents resource hogging
+ * - MULTIPLE BOOKINGS ALLOWED: Users can have multiple bookings as long as schedules don't conflict
  * - CAPACITY ENFORCEMENT: Ketua + anggota within room min-max capacity
  * - OPERATIONAL CONSTRAINTS: Respect jam operasi and hari libur
  * - SUSPENSION SYSTEM: Booking blocked if user or any member suspended
@@ -279,11 +275,9 @@ class BookingController
             exit;
         }
 
-        // Cek apakah user sudah punya booking aktif
-        if ($this->model->hasActiveBooking($nomor_induk)) {
-            echo "<script>alert('Anda sudah memiliki booking aktif. Selesaikan booking tersebut terlebih dahulu.'); window.location.href='index.php?page=profile';</script>";
-            exit;
-        }
+        // NOTE: Removed hasActiveBooking() check - users can now have multiple bookings
+        // as long as there are no time conflicts. Time slot validation is handled by
+        // isTimeSlotAvailable() and checkMemberConflicts() below.
 
         // Ambil data dari form
         $id_ruangan = (int) ($_POST['id_ruangan'] ?? 0);

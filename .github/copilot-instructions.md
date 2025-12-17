@@ -795,10 +795,11 @@ require_once __DIR__ . '/../config/Email.php';
 ## Booking Lifecycle & Business Rules
 **Critical constraints enforced in models and controllers:**
 
-**1. One Active Booking Per User:**
-- User can only have ONE booking with status AKTIF at a time
-- Check via `BookingModel::hasActiveBooking($nomor_induk)` before allowing new booking
-- Prevents resource hogging and ensures fair access
+**1. Multiple Bookings Allowed (Changed from One Active Booking):**
+- Users can have MULTIPLE bookings with status AKTIF as long as schedules don't conflict
+- `BookingModel::hasActiveBooking()` is kept for display purposes only (show active booking card)
+- Time slot validation via `ScheduleModel::isTimeSlotAvailable()` and `checkMemberConflicts()` ensures no conflicts
+- This allows users to book different time slots/dates even when they have active bookings
 
 **2. Room Capacity Validation:**
 - Participant count MUST be between room's `minimal_kapasitas_ruangan` and `maksimal_kapasitas_ruangan`

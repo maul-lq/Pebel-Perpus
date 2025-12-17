@@ -137,8 +137,8 @@
  * - Aspect ratio: aspect-[4/3] for consistency
  * 
  * BUSINESS RULES:
- * - User can have only ONE active booking at a time
- * - Active booking blocks creation of new bookings
+ * - Users can have multiple bookings as long as schedules don't conflict
+ * - Booking availability validated by time slot conflicts, not by active booking count
  * - "Selesai" button only available for AKTIF status
  * - Finish triggers redirect to feedback collection
  * - Auto-update status: BookingListModel::autoUpdateSelesaiStatus()
@@ -412,7 +412,7 @@ require __DIR__ . '/components/head.php';
                             </div>
                         </div>
                         <div class="mt-2">
-                            <button <?= $tersedia ? '' : 'disabled' ?> data-booking-action="booking" data-room-id="<?= $ruangan['id_ruangan'] ?>" class="w-full bg-white text-sky-600 disabled:bg-gray-200 disabled:text-gray-800 font-semibold text-sm py-1.5 rounded hover:bg-sky-100 transition mb-2 border border-gray-100" <?= !$tersedia ? 'disabled' : '' ?>>
+                            <button data-booking-action="booking" data-room-id="<?= $ruangan['id_ruangan'] ?>" class="w-full bg-white text-sky-600 font-semibold text-sm py-1.5 rounded hover:bg-sky-100 transition mb-2 border border-gray-100">
                                 Booking
                             </button>
                             <div class="flex justify-between items-center border-t border-gray-100 pt-2 cursor-pointer group" data-modal-action="open" data-room-id="<?= $ruangan['id_ruangan'] ?>">

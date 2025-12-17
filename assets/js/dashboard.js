@@ -198,7 +198,7 @@ function initDashboard() {
             showNavbarWithoutTitle(assetPath);
         });
     }
-});
+};
 
 // Fungsi untuk menampilkan navbar tanpa teks title
 function showNavbarWithoutTitle(assetPath = '') {

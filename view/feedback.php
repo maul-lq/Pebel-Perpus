@@ -16,8 +16,8 @@
  * FITUR:
  * 1. THANK YOU MESSAGE
  *    - Text: "Terima Kasih sudah menggunakan layanan kami..."
- *    - Informasi: User harus tunggu esok hari untuk booking lagi
- *    - Explanation: One active booking per user rule
+ *    - Informasi: User dapat booking lagi kapan saja
+ *    - Explanation: Multiple bookings allowed (no time conflicts)
  * 
  * 2. RATING SELECTION (Binary: 5 or 1)
  *    - Senyum (Hijau) → Rating 5: Sangat puas dengan layanan

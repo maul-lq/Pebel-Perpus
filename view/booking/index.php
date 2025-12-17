@@ -158,7 +158,7 @@
  * 1. Client-side: JavaScript validates before submit
  * 2. Server-side: BookingController::buat_booking() re-validates
  * 3. Business rules:
- *    - One active booking per user
+ *    - Users can have multiple bookings (no time conflicts)
  *    - Participant count within room capacity
  *    - No time slot conflicts
  *    - No past datetime bookings

@@ -34,7 +34,7 @@
  * - booking -> feedback (1:1) via id_booking (post-completion feedback)
  * 
  * BUSINESS RULES:
- * 1. ONE ACTIVE BOOKING PER USER - User can only have 1 AKTIF booking at a time
+ * 1. MULTIPLE BOOKINGS ALLOWED - Users can have multiple AKTIF bookings if schedules don't conflict
  * 2. CAPACITY VALIDATION - Participant count between room min-max capacity
  * 3. ROOM TYPE - Only 'Ruang Umum' for user bookings ('Ruang Rapat' for external)
  * 4. KETUA REQUIRED - Booking must have exactly 1 ketua (logged-in user)
