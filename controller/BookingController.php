@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ============================================================================
  * BOOKINGCONTROLLER.PHP - User Booking Management Controller
@@ -158,25 +159,25 @@ class BookingController
      * @var BookingModel
      */
     private BookingModel $model;
-    
+
     /**
      * RuanganModel instance untuk room validation
      * @var RuanganModel
      */
     private RuanganModel $ruanganModel;
-    
+
     /**
      * ScheduleModel instance untuk time slot management
      * @var ScheduleModel
      */
     private ScheduleModel $scheduleModel;
-    
+
     /**
      * BookingListModel instance untuk auto-update methods
      * @var BookingListModel
      */
     private BookingListModel $bookingListModel;
-    
+
     /**
      * PengaturanModel instance untuk operational constraints
      * @var PengaturanModel
@@ -205,32 +206,32 @@ class BookingController
         // 2. SELESAI kedua - cek booking dengan check-in yang sudah habis waktunya
         $this->bookingListModel->autoUpdateHangusStatus();
         $this->bookingListModel->autoUpdateSelesaiStatus();
-        
+
         // Auto-update status ruangan di database based on real-time availability
         $this->ruanganModel->autoUpdateRoomStatus();
-        
+
         // Ambil id ruangan dari URL
         $id_ruangan = $_GET['room'] ?? null;
-        
+
         if (!$id_ruangan) {
             header('Location: index.php?page=dashboard');
             exit;
         }
-        
+
         // Ambil data ruangan
         $ruangan = $this->ruanganModel->getById((int)$id_ruangan);
-        
+
         if (!$ruangan) {
             echo "<script>alert('Ruangan tidak ditemukan'); window.location.href='index.php?page=dashboard';</script>";
             exit;
         }
-        
+
         // Cek apakah ruangan tersedia untuk user (Ruang Umum)
         if ($ruangan['jenis_ruangan'] !== 'Ruang Umum') {
             echo "<script>alert('Ruangan tidak tersedia untuk booking user'); window.location.href='index.php?page=dashboard';</script>";
             exit;
         }
-        
+
         $this->renderIndexView();
     }
 
@@ -262,7 +263,7 @@ class BookingController
             $sisa_waktu = $waktu_selesai_block - time();
             $jam = floor($sisa_waktu / 3600);
             $menit = floor(($sisa_waktu % 3600) / 60);
-            
+
             $message = 'Anda tidak dapat membuat booking. ' . $block['alasan_suspensi'] . "\n";
             $message .= 'Dapat booking kembali: ' . date('d F Y H:i', $waktu_selesai_block) . ' WIB';
             if ($jam > 0) {
@@ -296,7 +297,7 @@ class BookingController
         $booking_datetime = strtotime($tanggal . ' ' . $waktu_mulai);
         $now = time();
         $min_buffer = 0 * 60; // 0 menit buffer
-        
+
         if ($booking_datetime < ($now + $min_buffer)) {
             if (strtotime($tanggal) < strtotime('today')) {
                 echo "<script>alert('Tanggal booking tidak boleh di masa lalu'); window.location.href='index.php?page=booking&room=" . $id_ruangan . "';</script>";
@@ -316,11 +317,18 @@ class BookingController
         }
 
         // 2. Cek waktu operasi (hari dalam seminggu + jam operasional)
-        $hari_mapping = ['Sunday' => 'Minggu', 'Monday' => 'Senin', 'Tuesday' => 'Selasa', 'Wednesday' => 'Rabu', 
-                         'Thursday' => 'Kamis', 'Friday' => 'Jumat', 'Saturday' => 'Sabtu'];
+        $hari_mapping = [
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
+        ];
         $hari_inggris = date('l', strtotime($tanggal));
         $hari_indonesia = $hari_mapping[$hari_inggris];
-        
+
         $waktuOpCheck = $this->pengaturanModel->validateWaktuOperasi($hari_indonesia, $waktu_mulai, $waktu_selesai);
         if (!$waktuOpCheck['allowed']) {
             $msg = str_replace(['\\', "'", "\n", "\r"], ['\\\\', "\\'", '\\n', ''], $waktuOpCheck['message']);
@@ -352,8 +360,7 @@ class BookingController
             exit;
         }
 
-        if ($durasi > 180)
-        {
+        if ($durasi > 180) {
             echo "<script>alert('Durasi booking maksimal 180 menit (3 jam)'); window.location.href='index.php?page=booking&room=" . $id_ruangan . "';</script>";
             exit;
         }
@@ -384,7 +391,7 @@ class BookingController
                 $blocked_members[] = $member['nama'] . ' (' . $member['nomor_induk'] . ') - dapat booking ' . date('d F Y H:i', $waktu_selesai_block) . ' WIB';
             }
         }
-        
+
         if (!empty($blocked_members)) {
             $message = 'Anggota berikut sedang diblokir dari booking:\n' . implode('\n', $blocked_members);
             $msg = str_replace(['\\', "'", "\n", "\r"], ['\\\\', "\\'", '\\n', ''], $message);
@@ -401,9 +408,9 @@ class BookingController
         // Cek konflik anggota - pastikan ketua dan anggota tidak ada booking aktif di waktu yang sama
         $all_members = array_merge([$nomor_induk], array_column($valid_anggota, 'nomor_induk'));
         $conflicted_members = $this->scheduleModel->checkMemberConflicts($all_members, $tanggal, $waktu_mulai, $waktu_selesai);
-        
+
         if (!empty($conflicted_members)) {
-            $names = array_map(function($member) {
+            $names = array_map(function ($member) {
                 return $member['username'] . ' (' . $member['nomor_induk'] . ')';
             }, $conflicted_members);
             $message = 'Anggota berikut sudah memiliki booking di waktu yang sama: ' . implode(', ', $names);
@@ -444,7 +451,7 @@ class BookingController
         $success_message .= "• Booking HANGUS jika tidak check-in dalam 10 menit setelah waktu mulai\n";
         $success_message .= "• Pelanggaran 1/3 & 2/3: Diblokir booking 24 jam\n";
         $success_message .= "• Pelanggaran 3/3: Suspend 7 hari (tidak bisa booking sama sekali)";
-        
+
         $msg = str_replace(['\\', "'", "\n", "\r"], ['\\\\', "\\'", '\\n', ''], $success_message);
         echo "<script>alert('" . $msg . "'); window.location.href='index.php?page=booking&action=kode_booking&id=" . $id_booking . "';</script>";
         exit;
@@ -453,14 +460,14 @@ class BookingController
     public function kode_booking(): void
     {
         $id_booking = (int) ($_GET['id'] ?? 0);
-        
+
         if (!$id_booking) {
             header('Location: index.php?page=dashboard');
             exit;
         }
 
         $booking = $this->model->getById($id_booking);
-        
+
         if (!$booking) {
             echo "<script>alert('Booking tidak ditemukan'); window.location.href='index.php?page=dashboard';</script>";
             exit;
@@ -476,7 +483,7 @@ class BookingController
                     break;
                 }
             }
-            
+
             // Admin bisa lihat semua booking
             if (!$is_member && !in_array($_SESSION['user']['role'], ['Admin', 'Super Admin'])) {
                 echo "<script>alert('Anda tidak memiliki akses ke booking ini'); window.location.href='index.php?page=dashboard';</script>";
@@ -490,14 +497,14 @@ class BookingController
     public function hapus_booking(): void
     {
         $id_booking = (int) ($_GET['id'] ?? 0);
-        
+
         if (!$id_booking) {
             header('Location: index.php?page=profile');
             exit;
         }
 
         $booking = $this->model->getById($id_booking);
-        
+
         if (!$booking) {
             echo "<script>alert('Booking tidak ditemukan'); window.location.href='index.php?page=profile';</script>";
             exit;
@@ -538,14 +545,21 @@ class BookingController
     public function reschedule(): void
     {
         $id_booking = (int) ($_GET['id'] ?? 0);
-        
+
         if (!$id_booking) {
             header('Location: index.php?page=profile');
             exit;
         }
 
+
         $booking = $this->model->getById($id_booking);
-        
+        //Validasi booking jika sudah kurang dari 1 jam akan tidak bisa reskedul
+        if (strtotime($booking['tanggal_schedule']) == strtotime(date("Y-m-d")) && (strtotime($booking['waktu_mulai']) - time() <= strtotime("01:00:00"))) {
+            echo "<script>alert('Reschedule hanya bisa dilakukan minimal 1 jam sebelum waktu mulai booking'); window.location.href='index.php?page=profile';</script>";
+            exit;
+        }
+
+
         if (!$booking) {
             echo "<script>alert('Booking tidak ditemukan'); window.location.href='index.php?page=profile';</script>";
             exit;
@@ -596,7 +610,7 @@ class BookingController
             $reschedule_datetime = strtotime($tanggal_baru . ' ' . $waktu_mulai_baru);
             $now = time();
             $min_buffer = 5 * 60; // 5 menit buffer
-            
+
             if ($reschedule_datetime < ($now + $min_buffer)) {
                 if (strtotime($tanggal_baru) < strtotime('today')) {
                     echo "<script>alert('Tanggal reschedule tidak boleh di masa lalu'); window.location.href='index.php?page=booking&action=reschedule&id=" . $id_booking . "';</script>";
@@ -611,6 +625,16 @@ class BookingController
             $time_end = strtotime($waktu_selesai_baru);
             if ($time_end <= $time_start) {
                 echo "<script>alert('Waktu selesai harus lebih besar dari waktu mulai'); window.location.href='index.php?page=booking&action=reschedule&id=" . $id_booking . "';</script>";
+                exit;
+            }
+
+            //Validasi kalau user ga boleh reskedul kurang dari waktu booking saati ini
+
+            $current_schedule = $this->scheduleModel->getByBookingId($id_booking)[0];
+            // var_dump($current_schedule, $time_start <= strtotime($current_schedule["waktu_mulai"]) || $time_end <= strtotime($current_schedule["waktu_mulai"]) && strtotime($current_schedule["tanggal_schedule"]) == strtotime($tanggal_baru));
+            // Jika jadwal baru lebih awal dari jadwal saat ini, tolak
+            if (($time_start <= strtotime($current_schedule["waktu_mulai"]) || $time_end <= strtotime($current_schedule["waktu_mulai"])) && strtotime($current_schedule["tanggal_schedule"]) == strtotime($tanggal_baru)) {
+                echo "<script>alert('Reschedule ke waktu sebelum jadwal saat ini tidak diperbolehkan'); window.location.href='index.php?page=booking&action=reschedule&id=" . $id_booking . "';</script>";
                 exit;
             }
 
@@ -656,15 +680,15 @@ class BookingController
     public function get_booked_timeslots(): void
     {
         header('Content-Type: application/json');
-        
+
         $idRuangan = (int) ($_GET['id_ruangan'] ?? 0);
         $tanggal = $_GET['tanggal'] ?? '';
-        
+
         if (!$idRuangan || !$tanggal) {
             echo json_encode(['success' => false, 'message' => 'Parameter tidak lengkap']);
             exit;
         }
-        
+
         $schedules = $this->scheduleModel->getSchedulesByRoomAndDate($idRuangan, $tanggal);
         echo json_encode(['success' => true, 'schedules' => $schedules]);
         exit;
@@ -680,16 +704,16 @@ class BookingController
         if (ob_get_level()) {
             ob_end_clean();
         }
-        
+
         header('Content-Type: application/json');
-        
+
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             echo json_encode(['success' => false, 'message' => 'Method not allowed']);
             exit;
         }
 
         $nomor_induk = $_GET['nim'] ?? '';
-        
+
         if (empty($nomor_induk)) {
             echo json_encode(['success' => false, 'message' => 'NIM/NIP required']);
             exit;
@@ -698,7 +722,7 @@ class BookingController
         // Load AkunModel
         $akunModel = new AkunModel();
         $user = $akunModel->getByNomorInduk($nomor_induk);
-        
+
         if (!$user) {
             echo json_encode(['success' => false, 'message' => 'User tidak ditemukan']);
             exit;
@@ -717,5 +741,3 @@ class BookingController
         exit;
     }
 }
-
-?>
